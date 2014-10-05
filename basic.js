@@ -1,7 +1,7 @@
 console.log("This is a nodeJS Application...");
 console.log("Initializing the ports sucessfully..."); 
 var Gpio = require('onoff').Gpio,
-   led = new Gpio(17, 'out'),
+   led = new Gpio(11, 'out'),
    sleep = require('sleep'),
    _baseTime = 128000, //micro seconds
    sleepTime = _baseTime,
