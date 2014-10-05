@@ -29,7 +29,7 @@ var count = 0, lanenum = 0;
 while (true) {
 
 	for (var i=0; i<lanes.length; i++) {
-		(lanes[i].state === 0) {
+		if (lanes[i].state === 0) {
 			signals.on(lanes[i].led.red);
 			signals.off(lanes[i].led.green);
 		} else {
@@ -41,7 +41,7 @@ while (true) {
 		}
 	}
 		
-	greenTimerExec(greenLane, lanenum);
+	greenTimerExec(lanenum);
 	lanes[count].state = 0;
 	count++;
 	if (count >= lanes.length) { count = 0;}
@@ -66,6 +66,7 @@ while (true) {
 		console.log("Average time Set for Lane: " + (num+1) + " Is : " + avgTime + " Seconds.");		
 		avgTime += 5;
 		if (avgTime>= MAX_TIME) {avgTime = MAX_TIME;}
+		if (avgTime < 10 ) {avgTime = 10;}
 		lane.time = avgTime;
 	}
 	lanes[num] = lane;
