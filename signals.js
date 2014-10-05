@@ -67,7 +67,7 @@ greenTimerExec function(num) {
 	}
 	
 	if (lane.ftItr >= 4) {
-		var avgTime = (ParseInt(Math.floor(lane.freeTime/(lane.ftItr + 1))));
+		var avgTime = (Math.floor(lane.freeTime/(lane.ftItr + 1)));
 		console.log("Average time Set for Lane: " + (num+1) + " Is : " + avgTime + " Seconds.");		
 		lane.time = avgTime;
 	}
