@@ -5,7 +5,7 @@ var Gpio = require('onoff').Gpio,
    _baseTime = 100000, //micro seconds
    second = _baseTime * 10,
    sensorData = true,
-   MAX_TIME = 40;
+   MAX_TIME = 10;
 var lanes = [
 	{time: MAX_TIME, led: {red: 17, green: 18}, freetime: 0, ftItr: 0, state: 0 /* Red default and 1 is for GREEN */},
 	{time: MAX_TIME, led: {red: 17, green: 18}, freetime: 0, ftItr: 0, state: 0 /* Red default and 1 is for GREEN */},
@@ -62,12 +62,16 @@ while (true) {
 	}
 	lane.freeTime += sensorCount;
 	if (lane.ftItr >= 4) {
+	console.log("time :" + lane.freeTime + " Itr: " + lane.ftItr);
 		var avgTime = (Math.floor(lane.freeTime/(lane.ftItr + 1)));
 		console.log("Average time Set for Lane: " + (num+1) + " Is : " + avgTime + " Seconds.");		
 		avgTime += 5;
 		if (avgTime>= MAX_TIME) {avgTime = MAX_TIME;}
+		if (isNaN(avgTime)) { avgTime = 10;}
 		if (avgTime < 10 ) {avgTime = 10;}
 		lane.time = avgTime;
+		lane.ftItr = 0;
+		lane.freeTime = 0;
 	}
 	lanes[num] = lane;
 }
