@@ -19,9 +19,10 @@ var signals = {
 console.log("Executing the ports..");    
 for (var i=0; i<10; i++) {
 	console.log("setting port17 to ON state");
-	signals.bink();
+	signals.blink();
 	sleep.usleep(btwWords);
 	signals.reset();
+	sleep.usleep(btwWords);
 	console.log("setting port17 to OFF state");
 }   
  
